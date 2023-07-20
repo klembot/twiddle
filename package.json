@@ -1,0 +1,18 @@
+{
+  "name": "twiddle",
+  "version": "1.0.0",
+  "description": "tiny utilities for Twine",
+  "scripts": {
+    "build": "vite build",
+    "start": "vite"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "twine-utils": "^3.1.0"
+  },
+  "devDependencies": {
+    "vite": "^4.4.4"
+  }
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Twiddle - Small utilities for Twine</title>
+    <link rel="stylesheet" href="index.css" />
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <div class="root">
+      <header>
+        <h1>Twiddle</h1>
+        <h2>small utilities for Twine</h2>
+      </header>
+      <nav>
+        <ul role="tablist">
+          <li>
+            <a href="#convert" id="convert-tab" role="tab" aria-selected="true" aria-controls="convert">Convert</a>
+          </li>
+          <li>
+            <a href="#combine" id="combine-tab" role="tab" aria-controls="combine">Combine</a>
+          </li>
+        </ul>
+      </nav>
+      <form id="convert" role="tabpanel" aria-labelledby="convert-tab">
+        <p>This converts between different Twine file formats:</p>
+        <ul>
+          <li>Twine 1 TWS files</li>
+          <li>Twine 1 published HTML files</li>
+          <li>Twee source code files</li>
+          <li>Twine 2 HTML story files</li>
+        </ul>
+        <p>
+          😢 Twine 1 conversions may not be perfect. In particular, many Twine 1
+          published HTML files don't contain passage position metadata, so
+          converting them to Twine 2 may place all passages on top of each
+          other.
+        </p>
+        <ol>
+          <li>
+            <label for="convert-input-file"
+              >Select a file (.tws, .html, .twee, or .txt) to convert.</label
+            >
+            <input
+              type="file"
+              id="convert-input-file"
+              accept=".html,.twee,.tws,.txt"
+            />
+            <p class="commentary" id="convert-input-status"></p>
+          </li>
+          <li id="convert-format-step" hidden>
+            <label for="convert-output-format"
+              >Choose the format to convert to.</label
+            >
+            <select id="convert-output-format">
+              <option value="twee">Twee</option>
+              <option value="html">Twine 2 story</option>
+              <option value="json">JSON dump</option>
+            </select>
+            <p class="commentary" id="convert-format-description"></p>
+          </li>
+        </ol>
+        <button id="convert-submit">Convert</button>
+      </form>
+      <form id="combine" hidden role="tabpanel" aria-labelledby="combine-tab">
+        <p>
+          This merges multiple Twine 2 stories into one. If you need a more
+          complex workflow,
+          <a href="https://github.com/videlais/extwee">extwee</a> or
+          <a href="https://www.motoslave.net/tweego/">tweego</a> may also be
+          helpful.
+        </p>
+        <p>
+          ✋ This only works with Twine 2 story files, not Twee or any other
+          formats.
+        </p>
+        <ol>
+          <li>
+            <label>
+              Select the Twine story files to merge. (Use the Shift or Control
+              keys when choosing files to select multiple.)
+              <input accept="file" id="combine-sources" multiple type="file" />
+            </label>
+          </li>
+          <li hidden id="combine-start-file-container">
+            <label
+              >Which story file should be the starting point for the merged
+              file? Your merged file will also use the story format of this
+              story.
+              <div class="select-container">
+                <div class="select">
+                  <select id="combine-start-file"></select>
+                </div>
+              </div>
+            </label>
+          </li>
+        </ol>
+        <button disabled id="combine-submit" type="submit">Combine</button>
+      </form>
+    </div>
+  </body>
+  <script type="module" src="combine.js"></script>
+  <script type="module" src="convert.js"></script>
+  <script type="module" src="nav.js"></script>
+</html>
